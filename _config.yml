@@ -38,5 +38,5 @@ markdown: kramdown
 kramdown:
   input: GFM                            # use Github Flavored Markdown !important
   
-url: "localhost:4000"              # your host, for absolute URL
+url: "werur.me"              # your host, for absolute URL
 baseurl: ""   
