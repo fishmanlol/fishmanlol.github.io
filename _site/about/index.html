@@ -10,7 +10,7 @@
     <meta name="keywords"  content="">
     <meta name="theme-color" content="">
     
-    <title>Werur's Blog</title>
+    <title>About - Werur's Blog</title>
 
     <!-- Web App Manifest -->
     <link rel="manifest" href="/pwa/manifest.json">
@@ -19,7 +19,7 @@
     <link rel="shortcut icon" href="/img/favicon.ico">
     
     <!-- Canonical URL -->
-    <link rel="canonical" href="localhost:4000/">
+    <link rel="canonical" href="localhost:4000/about/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -150,14 +150,14 @@
 
 
     <!-- Page Header -->
-<header class="intro-header" style="background-image: url('/img/home-bg.jpg')">
+<header class="intro-header" style="background-image: url('/img/about-bg-walle.jpg')">
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 ">
                 <div class="site-heading">
-                    <h1>Werur's Blog</h1>
+                    <h1>About</h1>
                     <!--<hr class="small">-->
-                    <span class="subheading">Keep Learning</span>
+                    <span class="subheading">Hey, this is Werur.</span>
                 </div>
             </div>
         </div>
@@ -178,48 +178,63 @@
                 col-xs-12
                 postlist-container
             ">
-    			
-<div class="post-preview">
-    <a href="/2018/04/27/UIImagePickerController%E8%BF%94%E5%9B%9E%E7%9A%84%E5%9B%BE%E7%89%87%E5%9C%A8UIButton%E4%B8%8A%E6%98%BE%E7%A4%BA%E7%A9%BA%E7%99%BD/">
-        <h2 class="post-title">
-            UIImagePickerController返回的图片在UIButton上显示空白
-        </h2>
-        
-        <h3 class="post-subtitle">
-            另我们困惑的背后往往事情很简单
-        </h3>
-        
-        <div class="post-content-preview">
-            
+    			<!-- Language Selector -->
+<select class="sel-lang" onchange= "onLanChange(this.options[this.options.selectedIndex].value)">
+    <option value="0" selected> 中文 Chinese </option>
+    <option value="1"> 英文 English </option>
+</select>
 
-今天遇到一个很郁闷的问题，UIImagePickerController返回的图片在UIButton上显示空白，图例如下：
+<!-- Chinese Version -->
+<div class="zh post-container">
+    
+    <p>大家好，我是Werur，喜欢Dota和咖啡。</p>
 
+<p>喜欢分享，但不喜欢写东西，这次算是一个尝试。</p>
 
+<p>尽力去探索iOS开发中的点点滴滴，把平时我所困惑的知识点记录下来并剖析，同时也是巩固知识的一个方法。有点类似<a href="https://zh.wikipedia.org/wiki/%E5%B0%8F%E9%BB%84%E9%B8%AD%E8%B0%83%E8%AF%95%E6%B3%95">小黄鸭调试法</a>~~</p>
 
-且在控制台得到error信息(这个错误其实有点误导)：
+<p>正向逆向都有所涉及，对技术的底层实现更是痴迷。希望有志同道合的朋友一起探讨，共同进步。</p>
 
 
-
-思考步骤：
-
-1.会不会是访问照片权限问题
-因为控制台报错了，那我们就考量下是不是照片访问权限问题。
-a)在info.plist中设置：
-
-
-b)检查访问照片权限：
-
-func checkPermi...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Werur on April 27, 2018
-    </p>
 </div>
-<hr>
+
+<!-- English Version -->
+<div class="en post-container">
+    
+    <p>Hey, everyone! I’m Werur, I love Dota and Coffee.</p>
+
+<p>I’d love to share knowledge, but writing is not my favor. This is my first attempt.</p>
+
+<p>I try to explain every detail in my articles, it’s also a shortcut for me to understand it well.</p>
+
+<p>Behind the iOS development, reverse engineering makes me dive into the core of programming. I will record my expierence in learning it. Being a cool hacker is one of my initial powers that drive me to major in Computer Science.</p>
+
+</div>
 
 
-<!-- Pager -->
+
+<!-- disqus 评论框 start -->
+<div class="comment">
+    <div id="disqus_thread" class="disqus-thread">
+
+    </div>
+</div>
+<!-- disqus 评论框 end -->
+
+<!-- disqus 公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = "_yi tong_";
+    var disqus_identifier = "_yi tong_//about/";
+    var disqus_url = "localhost:4000/about/";
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<!-- disqus 公共JS代码 end -->
 
 
     		</div>
@@ -443,6 +458,55 @@ func checkPermi...
 
 
 <!-- Multi-Lingual -->
+
+<!-- Handle Language Change -->
+<script type="text/javascript">
+    // get nodes
+    var $zh = document.querySelector(".zh");
+    var $en = document.querySelector(".en");
+    var $select = document.querySelector("select");
+
+    // bind hashchange event
+    // Changes at v1.7.2: change the language flag from hash-basing to in-memory basing
+    // due to its confliction with catalog anchors.
+    // window.addEventListener('hashchange', _render);
+
+    // handle render
+    function _render(_hash){
+        var _hash = _hash || window.location.hash;
+        // en
+        if(_hash == "#en"){
+            $select.selectedIndex = 1;
+            $en.style.display = "block";
+            $en.classList.add("active");
+            $zh.style.display = "none";
+            $zh.classList.remove("active");
+        // zh by default
+        }else{
+            // not trigger onChange, otherwise cause a loop call.
+            $select.selectedIndex = 0;
+            $zh.style.display = "block";
+            $zh.classList.add("active");
+            $en.style.display = "none";
+            $en.classList.remove("active");
+        }
+        // interop with catalog 
+        if ("") generateCatalog(".catalog-body");
+    }
+
+    // handle select change
+    function onLanChange(index){
+        if(index == 0){
+            _hash = "#zh"
+        }else{
+            _hash = "#en"
+        }
+        _render(_hash)
+    }
+
+    // init
+    _render();
+</script>
 
 
 
