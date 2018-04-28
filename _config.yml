@@ -25,7 +25,7 @@ disqus_username: yi_tong
 
 # Google Analytics
 ga_track_id: 'UA-118334394-1'            # 你用Google账号去注册一个就会给你一个这样的id
-ga_domain: auto			# 默认的是 auto, 这里我是自定义了的域名，你如果没有自己的域名，需要改成auto。
+ga_domain: werur.me			# 默认的是 auto, 这里我是自定义了的域名，你如果没有自己的域名，需要改成auto。
 
 header-img: img/home-bg.jpg
 
@@ -35,11 +35,5 @@ markdown: kramdown
 kramdown:
   input: GFM                            # use Github Flavored Markdown !important
   
-url: "werur.me" # your host, for absolute URL
+url: "http://werur.me" # your host, for absolute URL
 baseurl: ""   
-
----
-layout: default
-comments: true
-# other options
----
