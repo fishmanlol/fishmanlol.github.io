@@ -21,9 +21,6 @@ sidebar-avatar: /img/avatar-me.png     #你的大头贴，请使用绝对地址.
 featured-tags: true  
 featured-condition-size: 0 
 
-layout:     keynote
-iframe:     ""
-
 disqus_username: yi_tong
 
 # Google Analytics
@@ -38,5 +35,11 @@ markdown: kramdown
 kramdown:
   input: GFM                            # use Github Flavored Markdown !important
   
-url: "werur.me"              # your host, for absolute URL
+url: "werur.me" # your host, for absolute URL
 baseurl: ""   
+
+---
+layout: default
+comments: true
+# other options
+---
