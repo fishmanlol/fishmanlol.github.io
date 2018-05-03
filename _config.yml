@@ -38,3 +38,6 @@ kramdown:
   
 url: "http://werur.me" # your host, for absolute URL
 baseurl: ""   
+
+future: true
+timezone: America/Los_Angeles
