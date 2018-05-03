@@ -3,11 +3,61 @@
   <channel>
     <title>Werur's Blog</title>
     <description>If you can't explain it simply, you don't understand it well enough</description>
-    <link>werur.me/</link>
-    <atom:link href="werur.me/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Sat, 28 Apr 2018 11:43:41 -0700</pubDate>
-    <lastBuildDate>Sat, 28 Apr 2018 11:43:41 -0700</lastBuildDate>
+    <link>http://werur.me/</link>
+    <atom:link href="http://werur.me/feed.xml" rel="self" type="application/rss+xml" />
+    <pubDate>Wed, 02 May 2018 17:04:21 -0700</pubDate>
+    <lastBuildDate>Wed, 02 May 2018 17:04:21 -0700</lastBuildDate>
     <generator>Jekyll v3.7.3</generator>
+    
+      <item>
+        <title>XCode9复制当前行到下一行</title>
+        <description>&lt;p&gt;有时候我们需要把当前行的内容复制到下一行，而XCode默认情况下是不提供这样的快捷键的，这时候就需要我们自己动手自定义了。&lt;/p&gt;
+
+&lt;p&gt;我们需要动手添加我们自定义的操作，在Finder中找到我们需要修改的文件：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;/Applications/Xcode.app/Contents/Frameworks/IDEKit.framework/Resources/IDETextKeyBindingSet.plist
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;这个文件是不能直接修改的，系统要求我们有这个文件所在目录的写入权限。&lt;/p&gt;
+
+&lt;p&gt;打开终端，添加赋权限语句：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sudo chmod 666 /Applications/Xcode.app/Contents/Frameworks/IDEKit.framework/Resources/IDETextKeyBindingSet.plist
+
+sudo chmod 777 /Applications/Xcode.app/Contents/Frameworks/IDEKit.framework/Resources/
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;好了，我们可以对此文件进行修改了，这里我用Sublime2打开的。其他任意text处理程序都可以。&lt;/p&gt;
+
+&lt;p&gt;将下面这段代码添加到这个plist文件中：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;lt;key&amp;gt;Customized&amp;lt;/key&amp;gt;
+&amp;lt;dict&amp;gt;
+&amp;lt;key&amp;gt;Duplicate Current Line&amp;lt;/key&amp;gt;
+&amp;lt;string&amp;gt;moveToBeginningOfLine:, deleteToEndOfLine:, yank:, insertNewline:, moveToBeginningOfLine:, yank:&amp;lt;/string&amp;gt;
+&amp;lt;/dict&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/images1/9.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;这里注意下，如果你写入过程中有错误的话，XCode是会崩溃的，注意检查下就好了。&lt;/p&gt;
+
+&lt;p&gt;做完上述工作后保存，重启XCode，打开 Preferences.. -&amp;gt; Key Bindings&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/images1/10.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;PS: 这个操作是不会覆盖我们粘贴板里面的内容的，以前Command+C复制的东西还在里面&lt;/p&gt;
+</description>
+        <pubDate>Wed, 02 May 2018 16:31:55 -0700</pubDate>
+        <link>http://werur.me/2018/05/02/XCode9%E5%A4%8D%E5%88%B6%E5%BD%93%E5%89%8D%E8%A1%8C%E5%88%B0%E4%B8%8B%E4%B8%80%E8%A1%8C/</link>
+        <guid isPermaLink="true">http://werur.me/2018/05/02/XCode9%E5%A4%8D%E5%88%B6%E5%BD%93%E5%89%8D%E8%A1%8C%E5%88%B0%E4%B8%8B%E4%B8%80%E8%A1%8C/</guid>
+        
+        <category>iOS</category>
+        
+        <category>XCode</category>
+        
+        
+      </item>
     
       <item>
         <title>UIImagePickerController返回的图片在UIButton上显示空白</title>
@@ -126,8 +176,8 @@
 &lt;p&gt;虽然控制台依然报着那个误导我很久的错误。。。Let it go!&lt;/p&gt;
 </description>
         <pubDate>Fri, 27 Apr 2018 16:12:15 -0700</pubDate>
-        <link>werur.me/2018/04/27/UIImagePickerController%E8%BF%94%E5%9B%9E%E7%9A%84%E5%9B%BE%E7%89%87%E5%9C%A8UIButton%E4%B8%8A%E6%98%BE%E7%A4%BA%E7%A9%BA%E7%99%BD/</link>
-        <guid isPermaLink="true">werur.me/2018/04/27/UIImagePickerController%E8%BF%94%E5%9B%9E%E7%9A%84%E5%9B%BE%E7%89%87%E5%9C%A8UIButton%E4%B8%8A%E6%98%BE%E7%A4%BA%E7%A9%BA%E7%99%BD/</guid>
+        <link>http://werur.me/2018/04/27/UIImagePickerController%E8%BF%94%E5%9B%9E%E7%9A%84%E5%9B%BE%E7%89%87%E5%9C%A8UIButton%E4%B8%8A%E6%98%BE%E7%A4%BA%E7%A9%BA%E7%99%BD/</link>
+        <guid isPermaLink="true">http://werur.me/2018/04/27/UIImagePickerController%E8%BF%94%E5%9B%9E%E7%9A%84%E5%9B%BE%E7%89%87%E5%9C%A8UIButton%E4%B8%8A%E6%98%BE%E7%A4%BA%E7%A9%BA%E7%99%BD/</guid>
         
         <category>iOS</category>
         

@@ -14,7 +14,7 @@ paginate: 10
 
 # Sidebar settings
 sidebar: true  #添加侧边栏
-sidebar-about-description: "Like coffee, esppcially Geisha"
+sidebar-about-description: "Like coffee, especially Geisha!"
 sidebar-avatar: /img/avatar-me.png     #你的大头贴，请使用绝对地址.
 
 # Featured Tags

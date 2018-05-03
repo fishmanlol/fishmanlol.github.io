@@ -10,7 +10,7 @@
     <meta name="keywords"  content="">
     <meta name="theme-color" content="">
     
-    <title>About - Werur's Blog</title>
+    <title>XCode9复制当前行到下一行 - Werur's Blog</title>
 
     <!-- Web App Manifest -->
     <link rel="manifest" href="/pwa/manifest.json">
@@ -19,7 +19,7 @@
     <link rel="shortcut icon" href="/img/favicon.ico">
     
     <!-- Canonical URL -->
-    <link rel="canonical" href="http://werur.me/about/">
+    <link rel="canonical" href="http://werur.me/2018/05/02/XCode9%E5%A4%8D%E5%88%B6%E5%BD%93%E5%89%8D%E8%A1%8C%E5%88%B0%E4%B8%8B%E4%B8%80%E8%A1%8C/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -149,84 +149,193 @@
 </script>
 
 
-    <!-- Page Header -->
-<header class="intro-header" style="background-image: url('/img/about-bg-walle.jpg')">
+    <!-- Image to hack wechat -->
+<!-- <img src="/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="/img/post-bg-device.png" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        position: relative;
+        background-image: url('/img/post-bg-device.png')
+    }
+
+    
+    header.intro-header .header-mask{
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        background: rgba(0,0,0, 0.3);
+    }
+    
+</style>
+<header class="intro-header" >
+    <div class="header-mask"></div>
     <div class="container">
         <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 ">
-                <div class="site-heading">
-                    <h1>About</h1>
-                    <!--<hr class="small">-->
-                    <span class="subheading">Hey, this is Werur.</span>
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                        <a class="tag" href="/tags/#iOS" title="iOS">iOS</a>
+                        
+                        <a class="tag" href="/tags/#XCode" title="XCode">XCode</a>
+                        
+                    </div>
+                    <h1>XCode9复制当前行到下一行</h1>
+                    
+                    
+                    <h2 class="subheading">XCode小技巧</h2>
+                    
+                    <span class="meta">Posted by Werur on May 2, 2018</span>
                 </div>
             </div>
         </div>
     </div>
 </header>
 
-<!-- Main Content -->
-<div class="container">
-	<div class="row">
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <!-- Multi-Lingual -->
+                
+
+				<p>有时候我们需要把当前行的内容复制到下一行，而XCode默认情况下是不提供这样的快捷键的，这时候就需要我们自己动手自定义了。</p>
+
+<p>我们需要动手添加我们自定义的操作，在Finder中找到我们需要修改的文件：</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/Applications/Xcode.app/Contents/Frameworks/IDEKit.framework/Resources/IDETextKeyBindingSet.plist
+</code></pre></div></div>
+
+<p>这个文件是不能直接修改的，系统要求我们有这个文件所在目录的写入权限。</p>
+
+<p>打开终端，添加赋权限语句：</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo chmod 666 /Applications/Xcode.app/Contents/Frameworks/IDEKit.framework/Resources/IDETextKeyBindingSet.plist
+
+sudo chmod 777 /Applications/Xcode.app/Contents/Frameworks/IDEKit.framework/Resources/
+</code></pre></div></div>
+
+<p>好了，我们可以对此文件进行修改了，这里我用Sublime2打开的。其他任意text处理程序都可以。</p>
+
+<p>将下面这段代码添加到这个plist文件中：</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;key&gt;Customized&lt;/key&gt;
+&lt;dict&gt;
+&lt;key&gt;Duplicate Current Line&lt;/key&gt;
+&lt;string&gt;moveToBeginningOfLine:, deleteToEndOfLine:, yank:, insertNewline:, moveToBeginningOfLine:, yank:&lt;/string&gt;
+&lt;/dict&gt;
+</code></pre></div></div>
+
+<p><img src="/img/images1/9.png" alt="" /></p>
+
+<p>这里注意下，如果你写入过程中有错误的话，XCode是会崩溃的，注意检查下就好了。</p>
+
+<p>做完上述工作后保存，重启XCode，打开 Preferences.. -&gt; Key Bindings</p>
+
+<p><img src="/img/images1/10.png" alt="" /></p>
+
+<p>PS: 这个操作是不会覆盖我们粘贴板里面的内容的，以前Command+C复制的东西还在里面</p>
+
+
+                <hr style="visibility: hidden;">
+
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/2018/04/27/UIImagePickerController%E8%BF%94%E5%9B%9E%E7%9A%84%E5%9B%BE%E7%89%87%E5%9C%A8UIButton%E4%B8%8A%E6%98%BE%E7%A4%BA%E7%A9%BA%E7%99%BD/" data-toggle="tooltip" data-placement="top" title="UIImagePickerController返回的图片在UIButton上显示空白">
+                        Previous<br>
+                        <span>UIImagePickerController返回的图片在UIButton上显示空白</span>
+                        </a>
+                    </li>
+                    
+                    
+                </ul>
+
+
+                
+                <!-- disqus 评论框 start -->
+                <div class="comment">
+                    <div id="disqus_thread" class="disqus-thread"></div>
+                </div>
+                <!-- disqus 评论框 end -->
+                
+
+                
+            </div>  
+
+    <!-- Side Catalog Container -->
+        
+            <div class="
+                col-lg-2 col-lg-offset-0
+                visible-lg-block
+                sidebar-container
+                catalog-container">
+                <div class="side-catalog">
+                    <hr class="hidden-sm hidden-xs">
+                    <h5>
+                        <a class="catalog-toggle" href="#">CATALOG</a>
+                    </h5>
+                    <ul class="catalog-body"></ul>
+                </div>
+            </div>
         
 
-<!-- USE SIDEBAR -->
-    <!-- PostList Container -->
-    		<div class="
-                col-lg-8 col-lg-offset-1
-                col-md-8 col-md-offset-1
-                col-sm-12
-                col-xs-12
-                postlist-container
-            ">
-    			<!-- Language Selector -->
-<select class="sel-lang" onchange= "onLanChange(this.options[this.options.selectedIndex].value)">
-    <option value="0" selected> 中文 Chinese </option>
-    <option value="1"> 英文 English </option>
-</select>
+    <!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
 
-<!-- Chinese Version -->
-<div class="zh post-container">
-    
-    <p>大家好，我是Werur，喜欢Dota和咖啡。</p>
+                <!-- Featured Tags -->
+                
+                <section>
+                    <hr class="hidden-sm hidden-xs">
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+        				
+                            
+                				<a href="/tags/#iOS" title="iOS" rel="2">
+                                    iOS
+                                </a>
+                            
+        				
+                            
+                				<a href="/tags/#XCode" title="XCode" rel="1">
+                                    XCode
+                                </a>
+                            
+        				
+        			</div>
+                </section>
+                
 
-<p>喜欢分享，但不喜欢写东西，这次算是一个尝试。</p>
-
-<p>尽力去探索iOS开发中的点点滴滴，把平时我所困惑的知识点记录下来并剖析，同时也是巩固知识的一个方法。有点类似<a href="https://zh.wikipedia.org/wiki/%E5%B0%8F%E9%BB%84%E9%B8%AD%E8%B0%83%E8%AF%95%E6%B3%95">小黄鸭调试法</a>~~</p>
-
-<p>正向逆向都有所涉及，对技术的底层实现更是痴迷。希望有志同道合的朋友一起探讨，共同进步。</p>
-
-
-</div>
-
-<!-- English Version -->
-<div class="en post-container">
-    
-    <p>Hey, everyone! I’m Werur, I love Dota and Coffee.</p>
-
-<p>I’d love to share knowledge, but writing is not my favor. This is my first attempt.</p>
-
-<p>I try to explain every detail in my articles, it’s also a shortcut for me to understand it well.</p>
-
-<p>Behind the iOS development, reverse engineering makes me dive into the core of programming. I will record my expierence in learning it. Being a cool hacker is one of my initial powers that drive me to major in Computer Science.</p>
-
-</div>
-
-
-
-<!-- disqus 评论框 start -->
-<div class="comment">
-    <div id="disqus_thread" class="disqus-thread">
-
+                <!-- Friends Blog -->
+                
+            </div>
+        </div>
     </div>
-</div>
-<!-- disqus 评论框 end -->
+</article>
+
+
+
+
+
 
 <!-- disqus 公共JS代码 start (一个网页只需插入一次) -->
 <script type="text/javascript">
     /* * * CONFIGURATION VARIABLES * * */
     var disqus_shortname = "yi_tong";
-    var disqus_identifier = "yi_tong//about/";
-    var disqus_url = "http://werur.me/about/";
+    var disqus_identifier = "/2018/05/02/XCode9复制当前行到下一行";
+    var disqus_url = "http://werur.me/2018/05/02/XCode9%E5%A4%8D%E5%88%B6%E5%BD%93%E5%89%8D%E8%A1%8C%E5%88%B0%E4%B8%8B%E4%B8%80%E8%A1%8C/";
 
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
@@ -237,84 +346,7 @@
 <!-- disqus 公共JS代码 end -->
 
 
-    		</div>
-    <!-- Sidebar Container -->
-            <div class="
-                col-lg-3 col-lg-offset-0
-                col-md-3 col-md-offset-0
-                col-sm-12
-                col-xs-12
-                sidebar-container
-            ">
-                <!-- Featured Tags -->
-                
-                <section>
-                    <hr class="hidden-sm hidden-xs">
-                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
-                    <div class="tags">
-                        
-                            
-                                <a href="/tags/#iOS" title="iOS" rel="2">
-                                    iOS
-                                </a>
-                            
-                        
-                            
-                                <a href="/tags/#XCode" title="XCode" rel="1">
-                                    XCode
-                                </a>
-                            
-                        
-                    </div>
-                </section>
-                
 
-                <!-- Short About -->
-                <section class="visible-md visible-lg">
-                    <hr><h5><a href="/about/">ABOUT ME</a></h5>
-                    <div class="short-about">
-                        
-                            <img src="/img/avatar-me.png" />
-                        
-                        
-                            <p>Like coffee, especially Geisha!</p>
-                        
-                        <!-- SNS Link -->
-                        <ul class="list-inline">
-                            
-                            
-                            
-                            
-                            <li>
-                                <a target="_blank" href="http://weibo.com/N/A">
-                                    <span class="fa-stack fa-lg">
-                                        <i class="fa fa-circle fa-stack-2x"></i>
-                                        <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
-                                    </span>
-                                </a>
-                            </li>
-                            
-                            
-                            
-                            <li>
-                                <a target="_blank" href="https://github.com/fishmanlol">
-                                    <span class="fa-stack fa-lg">
-                                        <i class="fa fa-circle fa-stack-2x"></i>
-                                        <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-                                    </span>
-                                </a>
-                            </li>
-                            
-                            
-                        </ul>
-                    </div>
-                </section>
-                <!-- Friends Blog -->
-                
-    		</div>
-        
-	</div>
-</div>
 
 
     <!-- Footer -->
@@ -461,58 +493,67 @@
 
 <!-- Side Catalog -->
 
+<script type="text/javascript">
+    function generateCatalog (selector) {
+
+        // interop with multilangual 
+        if () {
+            _containerSelector = 'div.post-container.active'
+        } else {
+            _containerSelector = 'div.post-container'
+        }
+
+        // init
+        var P = $(_containerSelector),a,n,t,l,i,c;
+        a = P.find('h1,h2,h3,h4,h5,h6');
+
+        // clean
+        $(selector).html('')
+
+        // appending
+        a.each(function () {
+            n = $(this).prop('tagName').toLowerCase();
+            i = "#"+$(this).prop('id');
+            t = $(this).text();
+            c = $('<a href="'+i+'" rel="nofollow">'+t+'</a>');
+            l = $('<li class="'+n+'_nav"></li>').append(c);
+            $(selector).append(l);
+        });
+        return true;
+    }
+
+    generateCatalog(".catalog-body");
+
+    // toggle side catalog
+    $(".catalog-toggle").click((function(e){
+        e.preventDefault();
+        $('.side-catalog').toggleClass("fold")
+    }))
+
+    /*
+     * Doc: https://github.com/davist11/jQuery-One-Page-Nav
+     * Fork by Hux to support padding
+     */
+    async("/js/jquery.nav.js", function () {
+        $('.catalog-body').onePageNav({
+            currentClass: "active",
+            changeHash: !1,
+            easing: "swing",
+            filter: "",
+            scrollSpeed: 700,
+            scrollOffset: 0,
+            scrollThreshold: .2,
+            begin: null,
+            end: null,
+            scrollChange: null,
+            padding: 80
+        });
+    });
+</script>
+
 
 
 <!-- Multi-Lingual -->
-
-<!-- Handle Language Change -->
-<script type="text/javascript">
-    // get nodes
-    var $zh = document.querySelector(".zh");
-    var $en = document.querySelector(".en");
-    var $select = document.querySelector("select");
-
-    // bind hashchange event
-    // Changes at v1.7.2: change the language flag from hash-basing to in-memory basing
-    // due to its confliction with catalog anchors.
-    // window.addEventListener('hashchange', _render);
-
-    // handle render
-    function _render(_hash){
-        var _hash = _hash || window.location.hash;
-        // en
-        if(_hash == "#en"){
-            $select.selectedIndex = 1;
-            $en.style.display = "block";
-            $en.classList.add("active");
-            $zh.style.display = "none";
-            $zh.classList.remove("active");
-        // zh by default
-        }else{
-            // not trigger onChange, otherwise cause a loop call.
-            $select.selectedIndex = 0;
-            $zh.style.display = "block";
-            $zh.classList.add("active");
-            $en.style.display = "none";
-            $en.classList.remove("active");
-        }
-        // interop with catalog 
-        if ("") generateCatalog(".catalog-body");
-    }
-
-    // handle select change
-    function onLanChange(index){
-        if(index == 0){
-            _hash = "#zh"
-        }else{
-            _hash = "#en"
-        }
-        _render(_hash)
-    }
-
-    // init
-    _render();
-</script>
 
 
 
